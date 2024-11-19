@@ -16,7 +16,7 @@ def main():
     X = vectorizer.fit_transform(df['news_clean'])
 
     # Ejecutar K-Means
-    kmeans_model = kmeans.kmeans_converge(X, n_clusters=7)
+    kmeans_model = kmeans.buscar_mejor_kmeans(X, min_clusters=2, max_clusters=15, n_iteraciones=5)
 
     # Asignar el cluster a cada noticia
     df['cluster'] = kmeans_model.predict(X)
