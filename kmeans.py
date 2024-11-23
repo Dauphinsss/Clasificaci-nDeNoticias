@@ -1,24 +1,17 @@
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 import numpy as np
 
-# Función para ejecutar K-Means con convergencia manual
+# Función para ejecutar K-Means con convergencia
 def kmeans_converge(X, n_clusters, max_iter=300, tol=1e-6):
-    kmeans = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=10, random_state=42)
-    prev_centroids = None
-    for i in range(max_iter):
-        kmeans.fit(X)
-        # Verificamos la convergencia comparando los centroides
-        if prev_centroids is not None and np.allclose(kmeans.cluster_centers_, prev_centroids, atol=tol):
-            print(f"Convergencia alcanzada en la iteración {i+1}")
-            break
-        prev_centroids = kmeans.cluster_centers_.copy()
+    kmeans = KMeans(n_clusters=n_clusters, max_iter=max_iter, n_init=10, random_state=42, tol=tol)
+    kmeans.fit(X)
+    print(f"Convergencia alcanzada después de {kmeans.n_iter_} iteraciones.")
     return kmeans
-# Función para buscar el mejor número de clusters en un rango determinado
-from sklearn.metrics import silhouette_score
 
+# Función para buscar el mejor número de clusters en un rango determinado
 def buscar_mejor_kmeans(X, min_clusters=2, max_clusters=15, n_iteraciones=5, max_iter=300, tol=1e-6):
     mejor_kmeans = None
-    mejor_convergencia = float('inf')
     mejor_silueta = -1  # Silueta va de -1 a 1
     mejor_numero_clusters = None
     

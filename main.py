@@ -5,21 +5,24 @@ import mostrar
 import analisis  # Nuevo módulo para análisis de clusters
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
+import seleccionar
 
 def main():
-    print("Comenzando el análisis de noticias...")
+    carpeta = "./data-sets"
+    archivo_ruta = seleccionar.mostrar_archivo_seleccionado(carpeta)
+    
 
-    # Cargar los datos
-    archivo_csv = './dataset-news.csv'  # Cambia esta ruta por la ubicación de tu archivo
+    print("Comenzando el análisis de noticias...")
+    archivo_csv = archivo_ruta  # Cambia esta ruta por la ubicación de tu archivo
     df = preprocesar.cargar_datos(archivo_csv)
 
     # Convertir el texto a vectores
-    vectorizer = TfidfVectorizer(max_features=500, ngram_range=(1, 2))
+    vectorizer = TfidfVectorizer(max_features=1000, ngram_range=(1, 2))
     X = vectorizer.fit_transform(df['news_clean'])
     X = normalize(X, norm='l2')
 
     # Ejecutar K-Means
-    kmeans_model = kmeans.buscar_mejor_kmeans(X, min_clusters=2, max_clusters=15, n_iteraciones=5)
+    kmeans_model = kmeans.buscar_mejor_kmeans(X, min_clusters=3, max_clusters=15, n_iteraciones=5)
 
     # Asignar el cluster a cada noticia
     df['cluster'] = kmeans_model.predict(X)
