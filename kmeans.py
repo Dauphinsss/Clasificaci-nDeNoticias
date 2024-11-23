@@ -13,41 +13,29 @@ def kmeans_converge(X, n_clusters, max_iter=300, tol=1e-6):
             break
         prev_centroids = kmeans.cluster_centers_.copy()
     return kmeans
-
 # Función para buscar el mejor número de clusters en un rango determinado
+from sklearn.metrics import silhouette_score
+
 def buscar_mejor_kmeans(X, min_clusters=2, max_clusters=15, n_iteraciones=5, max_iter=300, tol=1e-6):
     mejor_kmeans = None
-    mejor_convergencia = float('inf')  # Inicializamos con un valor muy alto
+    mejor_convergencia = float('inf')
+    mejor_silueta = -1  # Silueta va de -1 a 1
     mejor_numero_clusters = None
-    mejores_centroides = None
-
-    # Iterar sobre el rango de números de clusters
+    
     for n_clusters in range(min_clusters, max_clusters + 1):
         print(f"\nEvaluando K-Means con {n_clusters} clusters...")
         
-        # Inicializar el acumulador de la convergencia
-        convergencia_promedio = 0
+        kmeans = kmeans_converge(X, n_clusters=n_clusters, max_iter=max_iter, tol=tol)
+        labels = kmeans.predict(X)
         
-        # Realizar varias iteraciones para evaluar convergencia
-        for i in range(n_iteraciones):
-            print(f"  Iteración {i+1}...")
-            kmeans = kmeans_converge(X, n_clusters=n_clusters, max_iter=max_iter, tol=tol)
-            
-            # Agregar la inercia de este KMeans al total de convergencia
-            convergencia_promedio += kmeans.inertia_
+        # Evaluar silueta
+        silueta = silhouette_score(X, labels)
+        print(f"Índice de Silueta para {n_clusters} clusters: {silueta}")
         
-        # Promediar la convergencia de las iteraciones
-        convergencia_promedio /= n_iteraciones
-        
-        # Imprimir la convergencia promedio para este número de clusters
-        print(f"\nConvergencia promedio para {n_clusters} clusters: {convergencia_promedio}")
-
-        # Si el modelo actual tiene mejor convergencia, lo guardamos
-        if convergencia_promedio < mejor_convergencia:
-            mejor_convergencia = convergencia_promedio
+        if silueta > mejor_silueta:
+            mejor_silueta = silueta
             mejor_kmeans = kmeans
             mejor_numero_clusters = n_clusters
-            mejores_centroides = kmeans.cluster_centers_
 
-    print(f"\nMejor K-Means: {mejor_numero_clusters} clusters con convergencia: {mejor_convergencia}")
+    print(f"\nMejor número de clusters según silueta: {mejor_numero_clusters}")
     return mejor_kmeans
