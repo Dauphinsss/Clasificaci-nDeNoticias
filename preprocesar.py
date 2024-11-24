@@ -11,8 +11,7 @@ def cargar_modelo_spacy():
 # Función para limpiar texto
 def limpiar_texto_spacy(texto):
     if not isinstance(texto, str) or pd.isnull(texto):
-        return ""  # Si no es una cadena, devolver vacío
-    # Eliminar caracteres no deseados y convertir a minúsculas
+        return ""
     doc = nlp(texto.lower())
     # Filtrar palabras que no son stopwords y son alfabéticas
     tokens = [token.text for token in doc if not token.is_stop and token.is_alpha]

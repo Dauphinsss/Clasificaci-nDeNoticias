@@ -10,7 +10,7 @@ def kmeans_converge(X, n_clusters, max_iter=300, tol=1e-6):
     return kmeans
 
 # Función para buscar el mejor número de clusters en un rango determinado
-def buscar_mejor_kmeans(X, min_clusters=2, max_clusters=15, n_iteraciones=5, max_iter=300, tol=1e-6):
+def buscar_mejor_kmeans(X, min_clusters=3, max_clusters=12, n_iteraciones=5, max_iter=300, tol=1e-6):
     mejor_kmeans = None
     mejor_silueta = -1  # Silueta va de -1 a 1
     mejor_numero_clusters = None

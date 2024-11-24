@@ -22,7 +22,7 @@ def main():
     X = normalize(X, norm='l2')
 
     # Ejecutar K-Means
-    kmeans_model = kmeans.buscar_mejor_kmeans(X, min_clusters=3, max_clusters=15, n_iteraciones=5)
+    kmeans_model = kmeans.buscar_mejor_kmeans(X, min_clusters=3, max_clusters=12, n_iteraciones=5)
 
     # Asignar el cluster a cada noticia
     df['cluster'] = kmeans_model.predict(X)
