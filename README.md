@@ -7,12 +7,18 @@ Se abordará la problemática del agrupamiento automático de contenidos textual
 # Ejecución del Proyecto
 Para el correcto funcionamiento del proyecto debe correr el mismo en su computadora, para ello necesita de:
 
-1. Instalar [Visual Studio Code](https://code.visualstudio.com/).
-2. Instalar Python desde [python.org](https://www.python.org/).
+1. Instalar Python desde [python.org](https://www.python.org/).
+2. Instalar [Visual Studio Code](https://code.visualstudio.com/). (Preferencialmente o ejecutar el programa en un shell)
 3. Ejecutar los siguientes comandos en su terminal de preferencia (Nosotros usamos powershell, pero puede emplearse la terminal integrada de VSCode)
 
    # Instale las dependencias
    pip install scikit-learn pandas matplotlib matplotlib numpy spacy
+   python -m spacy download es_core_news_sm
+
+   ## Si utilizas Linux debes utilizar este comando extra para usar tkinter
+   sudo apt-get install python3-tk (Ubuntu/Debian)
+   sudo dnf install python3-tkinter (Fedora)
+  
 
    # Finalmente ejecute el main.py y vea el proyecto
    python .\ClasificacionDeNoticias\main.py
