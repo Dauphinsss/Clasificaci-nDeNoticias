@@ -15,4 +15,4 @@ Para el correcto funcionamiento del proyecto debe correr el mismo en su computad
    pip install scikit-learn pandas matplotlib matplotlib numpy spacy
 
    # Finalmente ejecute el main.py y vea el proyecto
-   python .\agente\main.py
+   python .\ClasificacionDeNoticias\main.py
