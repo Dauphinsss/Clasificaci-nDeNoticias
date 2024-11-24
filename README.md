@@ -14,22 +14,27 @@ Para el correcto funcionamiento del proyecto debe correr el mismo en su computad
 # Instalación de Librerías Automatizadas
 
    ## Si usas Windows
-   ## Ejecutar el archivo setup.bat haciendo doble click sobre el o ejecutando en el shell el comando:
-         setup.bat
+   Ejecutar el archivo setup.bat haciendo doble click sobre el o ejecutando en el shell el comando:
+      
+      setup.bat
 
    ## Si usas Linux
-   ## Haz el archivo ejecutable con:
-         chmod +x setup.sh
-   ## Luego ejecutalo
-         ./setup.sh
+   Haz el archivo ejecutable con:
+      
+      chmod +x setup.sh
+   Luego ejecutalo
+      
+      ./setup.sh
 
 # Instalación de Librerías Manualmente
 
-   ## Instale las dependencias
+   Instale las dependencias
+      
       pip install scikit-learn pandas matplotlib matplotlib numpy spacy
       python -m spacy download es_core_news_sm
 
-   ## Si utilizas Linux debes utilizar este comando extra para usar tkinter
+   Si utilizas Linux debes utilizar este comando extra para usar tkinter
+      
       sudo apt-get install python3-tk (Ubuntu/Debian)
       sudo dnf install python3-tkinter (Fedora)
   
