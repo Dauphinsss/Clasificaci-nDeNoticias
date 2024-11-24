@@ -12,12 +12,12 @@ Para el correcto funcionamiento del proyecto debe correr el mismo en su computad
 3. Ejecutar los siguientes comandos en su terminal de preferencia (Nosotros usamos powershell, pero puede emplearse la terminal integrada de VSCode)
 
    # Instale las dependencias
-   pip install scikit-learn pandas matplotlib matplotlib numpy spacy
-   python -m spacy download es_core_news_sm
+   1. pip install scikit-learn pandas matplotlib matplotlib numpy spacy
+   2. python -m spacy download es_core_news_sm
 
    ## Si utilizas Linux debes utilizar este comando extra para usar tkinter
-   sudo apt-get install python3-tk (Ubuntu/Debian)
-   sudo dnf install python3-tkinter (Fedora)
+   1. sudo apt-get install python3-tk (Ubuntu/Debian)
+   2. sudo dnf install python3-tkinter (Fedora)
   
 
    # Finalmente ejecute el main.py y vea el proyecto
